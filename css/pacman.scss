@@ -1,0 +1,234 @@
+.pacman {
+  animation: pac-move 4.44s infinite linear;
+  background: transparent;
+  position: absolute;
+  height: 10em;
+  margin: auto;
+  top: 33em;
+  width: 10em;
+  &__container {
+    position: relative;
+    width: 20%;
+  }
+
+  &__monster {
+    position: absolute;
+    top: 5em;
+    width: 30em;
+    animation: moveRightLeft 10s infinite;
+  }
+
+  @keyframes moveRightLeft {
+    0% { left: 10em }
+    50% { left: 40em }
+    100% { left: 10em }
+
+  }
+}
+
+.pacman::before,
+.pacman::after {
+  background: yellow;
+  content: '';
+  height: 5em;
+  position: absolute;
+  width: 10em;
+}
+.pacman::before {
+  animation: pac-before .333s infinite alternate;
+  border-top-left-radius: 5em;
+  border-top-right-radius: 5em;
+  top: 0;
+  transform-origin: center bottom;
+}
+.pacman::after {
+  animation: pac-after .333s infinite alternate;
+  bottom: 0;
+  border-bottom-left-radius: 5em;
+  border-bottom-right-radius: 5em;
+  transform-origin: center top;
+}
+
+@keyframes pac-move {
+  0% {
+    left: -10em;
+  }
+  100% {
+    left: calc(100% + 10em);
+  }
+}
+
+@keyframes pac-before {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+@keyframes pac-after {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+.pacman:hover::before {
+  transform: rotate(-45deg);
+}
+.pacman:hover::after {
+  transform: rotate(45deg);
+}
+
+.dot {
+  background: black;
+  border-radius: 50%;
+  height: 1em;
+  position: absolute;
+  margin: auto;
+  top: 16em;
+  width: 1em;
+  z-index: -1;
+}
+
+@for $i from 1 through 5 {
+  #dot#{$i} {
+    animation: dot-eaten 4.44s ($i * .399s) infinite linear;
+    left: $i * 16.66%;
+  }
+}
+
+@keyframes dot-eaten {
+  0% {
+    background: black;
+  }
+  20% {
+    background: black;
+  }
+  27% {
+    background: white;
+  }
+  100% {
+    background: white;
+  }
+}
+
+.ghost {
+  width: 100px;
+  height: 80px;
+  background: #D62828;
+  border-radius: 50px 50px 0 0;
+  position: relative;
+  animation: gfoot .8s .5s infinite;
+}
+
+.gcircle, .eye, eb {
+  position: absolute;
+}
+
+.gcircle {
+  width: 35px;
+  height: 35px;
+  background: #D62828;
+  border-radius: 50%;
+
+  animation: gfoot .5s infinite;
+}
+.g1, .g2, .g3 {
+  bottom: -20px;
+}
+.g2 {
+  left: 33px;
+}
+.g3 {
+  right: 0;
+}
+
+.eye {
+  width: 25px;
+  height: 30px;
+  border-radius: 25px;
+  background: #fff;
+}
+
+.eb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: blue;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+
+.eye1 {
+  top: 30px;
+  left: 15px;
+}
+.eye2 {
+  top: 30px;
+  left: 55px;
+}
+
+.mantop, .manbtm {
+  width: 100px;
+  height: 50px;
+  background: #fd0;
+}
+
+.mantop {
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  transform-origin: bottom;
+  animation: mantop .5s infinite;
+}
+.manbtm {
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  transform-origin: top;
+  animation: manbtm .5s infinite;
+}
+
+
+@keyframes mantop {
+  from {
+    transform: rotate(-40deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes manbtm {
+  from {
+    transform: rotate(40deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+
+
+
+
+@keyframes gfoot {
+  0% {
+    transform-origin: top;
+    transform: skewX(0deg);
+  }
+  50% {
+    transform-origin: top;
+    transform: skewX(-3deg);
+  }
+  100% {
+    transform-origin: top;
+    transform: skewX(0deg);
+  }
+}
+
+@keyframes dgo {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-30px);
+  }
+}
