@@ -358,6 +358,9 @@ body {
   padding: 10px 15px;
   margin-top: 15px;
 }
+.projects_card__title {
+  margin-bottom: 50px;
+}
 
 .footer {
   height: 150px;
